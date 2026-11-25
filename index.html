@@ -28,18 +28,18 @@ img { max-width: 60vw; margin-bottom: 15vh; }
 
 <main id="bonk">
   <h1>Information</h1>
-  <h1>RULES (only for devrom):</h1>
-  <p>Sharing NSFW/NSFL content in DMs, servers, groups, or demos = Block.<br>
-  For strangers, the block is permanent. For friends, it lasts 1-10 hours.<br>
-  This includes: explicit nudity, references to NSFW/NSFL content, character artwork/real person photo that is suggestive or fanservice-style, and anything that is indirectly NSFW.<br>
-  Not knowing the rules is not an excuse, and you can still be held responsible.<br>
-  No exceptions.</p>
+  <h1>RULES (Only for devrom):</h1>
+  <p>Sharing NSFW/NSFL content in DMs, servers, groups, or demos = Block.
+  Strangers: permanent block. Friends: temporary block (duration at my discretion).
+  This includes: explicit nudity, unsolicited descriptions of NSFW/NSFL content, suggestive or fanservice-style character art/IRL image/etc..., and implied/cropped nudity.
+  Not knowing the rules is not an excuse — you will still be blocked, even if rules was freshly made.
+  No exceptions beyond those listed below.</p>
 </main>
 
 <script>
 var fizzlewump = [
   { zonk: "music.mp3", blargh: 100, gurp: 0.7 },
-  { zonk: "World.mp3", blargh: 50, gurp: 0.7 },
+  { zonk: "World.mp3", blargh: 60, gurp: 0.7 },
 ];
 fizzlewump.forEach(s => { s.url = s.zonk; });
 
@@ -102,8 +102,8 @@ function kerplunk() {
   boop.src = fizzlewump[0].url;
   boop.play().catch(() => {});
   document.querySelectorAll("img").forEach(i => { i.src = i.dataset.g; });
-  setTimeout(() => {
-    var chunks = ["FRA", "CTA", "LU", "ST"], k = 0;
+  setTimeout(() => { 
+    var chunks = ["POKU", "STNI", "KTV", "OI"], k = 0;
     var tock = setInterval(() => {
       flibber.textContent += chunks[k++];
       if (k == chunks.length) {
