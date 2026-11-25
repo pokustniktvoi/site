@@ -1,147 +1,41 @@
 <!DOCTYPE html>
-<html>
+<html lang="ru">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>pokustniktvoi</title>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@700&family=Syne:wght@800&family=Archivo+Black&display=swap" rel="stylesheet">
-<style>
-body { margin: 0; background: black; color: white; font-family: 'Space Grotesk', sans-serif; text-align: center; overflow: hidden; }
-.splat { position: fixed; inset: 0; display: flex; align-items: center; justify-content: center; }
-#gnorp { background: black; z-index: 4; font-size: max(14px, 1.2vw); color: rgba(255, 255, 255, 0.35); }
-#splunge { background: black; z-index: 3; font-size: 5vw; }
-#kablorp { background: white; opacity: 0; z-index: 5; pointer-events: none; }
-#bonk { padding: 20vh 10vw; }
-h1 { font-size: 9vw; margin: 0 0 10vh; }
-p { font-size: 3vw; margin: 0 0 4vh; }
-img { max-width: 60vw; margin-bottom: 15vh; }
-#wiggler { cursor: pointer; }
-#shhhmoo { font-size: 12px; margin: 30vh 0 0; color: black; }
-#bonk h1, #bonk p, #bonk img:not(#wiggler) { display: block; width: fit-content; margin-left: auto; margin-right: auto; }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>pokustniktvoi</title>
+    <style>
+        body {
+            background-color: #000;
+            color: #fff;
+            font-family: monospace, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            line-height: 1.6;
+        }
+        h1 {
+            font-size: 2em;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #333;
+            padding-bottom: 10px;
+        }
+        p {
+            margin-bottom: 15px;
+        }
+    </style>
 </head>
 <body>
 
-<div id="gnorp" class="splat"></div>
-<div id="splunge" class="splat"><span id="flibber"></span></div>
-<div id="kablorp" class="splat"></div>
+    <h1>Information</h1>
 
-<main id="bonk">
- <h1>Information</h1>
- <img id="wiggler" data-g="gif1.gif">
-  <h1>RULES (Only for devrom):</h1>
-  <p>Sharing NSFW/NSFL content in DMs, servers, groups, or demos = Block.
-  Strangers: permanent block. Friends: temporary block (duration at my discretion).
-  This includes: explicit nudity, unsolicited descriptions of NSFW/NSFL content, suggestive or fanservice-style character art/IRL image/etc..., and implied/cropped nudity.
-  Not knowing the rules is not an excuse — you will still be blocked, even if rules was freshly made.
-  No exceptions beyond those listed below.</p>
- <p id="shhhmoo"></p>
-</main>
+    <h1>RULES (only for Devrom):</h1>
+    <p>Sharing NSFW/NSFL content in DMs, servers, groups, or demos = Block.<br>
+    Dvrom: permanent block. Friends: temporary block (duration at my discretion).<br>
+    This includes: explicit nudity, unsolicited descriptions of NSFW/NSFL content, suggestive or fanservice-style character art/IRL image/etc..., and implied/cropped nudity.<br>
+    Not knowing the rules is not an excuse — you will still be blocked, even if rules was freshly made.<br>
+    No exceptions.</p>
 
-<script>
-var fizzlewump = [
-  { zonk: "music.mp3", blargh: 100, gurp: 0.7 },
-  { zonk: "World.mp3", blargh: 60, gurp: 0.7 },
-];
-fizzlewump.forEach(s => { s.url = s.zonk; });
-
-var yoink = a => a[Math.floor(Math.random() * a.length)];
-var loadyBits = ["loading my page...", "loading...", "nah, I'd load.", "uhhh ohhh uhhh...", "wait for it...", "viruses? Nahhhh...", "WAIT...", "Uhhh... You need to wait a little less than for The Pact realese!..."];
-var clickyBits = ["click on me, pwetty plese :3", "TOUCH ME.", "press me.", "stroke me.", "hit me.", "meet your m1 with me.", "brush me.", "poke me :3"];
-var blipFont = yoink(["'Space Grotesk'", "'Syne'", "'Archivo Black'"]);
-gnorp.style.fontFamily = splunge.style.fontFamily = blipFont;
-gnorp.textContent = yoink(loadyBits);
-
-var wibble = 0, glorp = 1, seekd = false;
-var boop = new Audio();
-boop.volume = 0;
-
-boop.addEventListener("canplay", () => {
-  if (seekd) return;
-  seekd = true;
-  if (wibble == 0) boop.currentTime = 22;
-});
-
-function swapBoop() {
-  var w = fizzlewump.map((s, i) => i ? s.blargh : 0).filter((x, i) => i != wibble || !x);
-  var tot = 0, pick = 0, r;
-  var ws = fizzlewump.map((s, i) => (i && i != wibble) ? s.blargh : 0);
-  ws.forEach(x => { tot += x; });
-  r = Math.random() * tot;
-  for (pick = 1; pick < ws.length - 1; pick++) { r -= ws[pick]; if (r < 0) break; }
-  wibble = pick;
-  seekd = false;
-  boop.volume = 0;
-  boop.src = fizzlewump[wibble].url;
-  boop.play().catch(() => {});
-}
-boop.addEventListener("ended", swapBoop);
-wiggler.addEventListener("click", swapBoop);
-
-setInterval(() => {
-  if (!isFinite(boop.duration)) return;
-  var zib = wibble == 0 ? 22 : 0, zab = wibble == 0 ? 0.5 : 2;
-  var zub = Math.min(1, (boop.currentTime - zib) / zab, (boop.duration - boop.currentTime) / 2);
-  boop.volume = Math.min(1, Math.max(0, glorp * fizzlewump[wibble].gurp * zub));
-}, 50);
-
-var grabby = s => fetch(s.zonk).then(r => r.blob()).then(b => { s.url = URL.createObjectURL(b); }).catch(() => {});
-var nyoom = 0;
-var openSesame = () => {
-  if (nyoom++) return;
-  gnorp.textContent = yoink(clickyBits);
-  gnorp.style.cursor = "pointer";
-  gnorp.addEventListener("click", kerplunk);
-};
-setTimeout(openSesame, 1000);
-grabby(fizzlewump[0]).then(() => {
-  openSesame();
-  fizzlewump.slice(1).reduce((p, s) => p.then(() => grabby(s)), Promise.resolve());
-});
-
-function kerplunk() {
-  gnorp.remove();
-  boop.src = fizzlewump[0].url;
-  boop.play().catch(() => {});
-  document.querySelectorAll("img").forEach(i => { i.src = i.dataset.g; });
-  setTimeout(() => {pokustniktvoi
-    var chunks = ["POKU", "STNIK", "TV", "OI"], k = 0;
-    var tock = setInterval(() => {
-      flibber.textContent += chunks[k++];
-      if (k == chunks.length) {
-        clearInterval(tock);
-        setTimeout(() => {
-          kablorp.style.opacity = 1;
-          splunge.remove();
-          document.body.style.overflow = "auto";
-          setTimeout(() => { kablorp.style.transition = "opacity 2.5s"; kablorp.style.opacity = 0; }, 50);
-          var shh = setInterval(() => { glorp = Math.max(0.6, glorp - 0.02); if (glorp <= 0.6) clearInterval(shh); }, 100);
-        }, 170);
-      }
-    }, 150);
-  }, 300);
-}
-
-var zorbDay = new Date("2035-09-24T20:22:18Z").getTime();
-setInterval(() => {
-  var grab = getSelection(), grabbed = shhhmoo.contains(grab.anchorNode) || shhhmoo.contains(grab.focusNode);
-  var bleep = Math.max(0, Math.floor((zorbDay - Date.now()) / 1000));
-  shhhmoo.textContent = "My fart is cuming out soon... (" + Math.floor(bleep / 86400) + " days; " + Math.floor(bleep % 86400 / 3600) + " hours; " + Math.floor(bleep % 3600 / 60) + " minutes; " + bleep % 60 + " seconds left)";
-  if (grabbed) grab.selectAllChildren(shhhmoo);
-}, 1000);
-
-var wobbleData = [];
-document.querySelectorAll("#bonk h1, #bonk p, #bonk img:not(#wiggler)").forEach((el, i) => {
-  wobbleData.push({ el, speed: 0.002 + (i % 5) * 0.00015, phase: i * 1.5, tilt: 1.2 + (i % 3) * 0.3, mx: 4 + (i % 4) * 2, my: 4 + (i % 3) * 2 });
-});
-(function floatyTime() {
-  var now = performance.now();
-  wobbleData.forEach(d => {
-    var t = now * d.speed + d.phase;
-    d.el.style.transform = "translate(" + Math.cos(t * 0.8) * d.mx + "px, " + Math.sin(t * 1.1) * d.my + "px) rotate(" + Math.sin(t) * d.tilt + "deg)";
-  });
-  requestAnimationFrame(floatyTime);
-})();
-</script>
 </body>
 </html>
